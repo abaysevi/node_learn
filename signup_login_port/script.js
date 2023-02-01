@@ -155,7 +155,7 @@ app.post('/delete_post/:id', auth, async (req, res) => {
 
 app.get('/fetch_all_post', auth, async (req, res) => {
     await Post.find()
-
+    
 })
 
 
