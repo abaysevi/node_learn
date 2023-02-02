@@ -132,7 +132,7 @@ app.post('/update_post/:id', auth, async (req, res) => {
     current_user = req.user
     req.params.id
     let findpost = await Post.findOne({ _id: req.params.id, user_id: current_user._id })
-    if (findpost == {}) {
+    if (findpost == null) {
         res.send({ msg: "no user post found" })
     }
     else {
@@ -154,8 +154,8 @@ app.post('/delete_post/:id', auth, async (req, res) => {
 })
 
 app.get('/fetch_all_post', auth, async (req, res) => {
-    await Post.find()
-    
+     all_post =await Post.find()
+    res.send(all_post)
 })
 
 
