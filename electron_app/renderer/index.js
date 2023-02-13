@@ -11,8 +11,8 @@ const port = 3000;
 app.use(express.static(path.join(__dirname,'./public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/index', function (req, res) {
-    res.sendFile(path.join(__dirname, './index.html'));
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, './public/index.html'));
     // res.sendFile(path.join(__dirname,'./style.css'));
 
 });
@@ -20,9 +20,9 @@ app.get('/index', function (req, res) {
 app.post('/save-data', async (req, res) => {
 
     const data = req.body;
-    console.log(data.age, data.name, data.email, data.phone, data.gender, data)
+    // console.log(data.age, data.name, data.email, data.phone, data.gender, data)
     console.log(req.body)
-    //   res.send(data)
+
 
 
     const db = new sqlite3.Database('patient_details.db', (err) => {
@@ -72,8 +72,15 @@ app.post('/save-data', async (req, res) => {
 
     db.close();
 
-    res.send('Data saved successfully');
+    res.sendFile(path.join(__dirname,'./public/viewpage.html'));
+
 });
+
+
+app.get('/getit',(req,res)=>{
+    res.name="yoo"
+
+})
 
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
